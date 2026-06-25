@@ -1,28 +1,39 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { getItem, setItem } from '../utils/storage.js';
+import { fetchTrip, updateTripAPI } from '../utils/api.js';
 
 export function useTrip(tripId, onTripChange) {
   const [trip, setTrip] = useState(() => getItem(`trip:${tripId}`));
 
+  // Load fresh from API on mount
+  useEffect(() => {
+    fetchTrip(tripId)
+      .then(data => {
+        setItem(`trip:${tripId}`, data);
+        setTrip(data);
+        if (onTripChange) onTripChange(data);
+      })
+      .catch(() => { /* keep localStorage fallback */ });
+  }, [tripId]);
+
   function save(updatedTrip) {
+    // Optimistic local update
     setItem(`trip:${tripId}`, updatedTrip);
     setTrip(updatedTrip);
     if (onTripChange) onTripChange(updatedTrip);
+    // Persist to API (fire-and-forget)
+    updateTripAPI(updatedTrip).catch(() => { /* local copy already saved */ });
   }
 
-  const updateTrip = (fields) => {
-    save({ ...trip, ...fields });
-  };
+  const updateTrip = (fields) => save({ ...trip, ...fields });
 
-  const addExpense = (expense) => {
+  const addExpense = (expense) =>
     save({ ...trip, expenses: [expense, ...(trip.expenses || [])] });
-  };
 
-  const deleteExpense = (expenseId) => {
+  const deleteExpense = (expenseId) =>
     save({ ...trip, expenses: (trip.expenses || []).filter(e => e.id !== expenseId) });
-  };
 
-  const addChecklistItem = (catId, text) => {
+  const addChecklistItem = (catId, text) =>
     save({
       ...trip,
       checklist: trip.checklist.map(cat =>
@@ -31,9 +42,8 @@ export function useTrip(tripId, onTripChange) {
           : cat
       ),
     });
-  };
 
-  const toggleChecklistItem = (catId, itemId) => {
+  const toggleChecklistItem = (catId, itemId) =>
     save({
       ...trip,
       checklist: trip.checklist.map(cat =>
@@ -42,9 +52,8 @@ export function useTrip(tripId, onTripChange) {
           : cat
       ),
     });
-  };
 
-  const deleteChecklistItem = (catId, itemId) => {
+  const deleteChecklistItem = (catId, itemId) =>
     save({
       ...trip,
       checklist: trip.checklist.map(cat =>
@@ -53,7 +62,6 @@ export function useTrip(tripId, onTripChange) {
           : cat
       ),
     });
-  };
 
   return { trip, updateTrip, addExpense, deleteExpense, addChecklistItem, toggleChecklistItem, deleteChecklistItem };
 }

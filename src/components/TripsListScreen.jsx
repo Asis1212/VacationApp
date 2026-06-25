@@ -1,22 +1,18 @@
 import { getTripStatus, sortTrips } from '../utils/tripHelpers.js';
-import { useTrips } from '../hooks/useTrips.js';
 import TripCard from './TripCard.jsx';
 import EmptyState from './shared/EmptyState.jsx';
 
 const SOON_STATUSES = new Set(['draft', 'upcoming', 'today', 'active']);
 
-export default function TripsListScreen({ onSelectTrip }) {
-  const { trips, createTrip } = useTrips();
-
-  const handleNew = () => {
-    const id = createTrip();
+export default function TripsListScreen({ trips, loading, createTrip, onSelectTrip }) {
+  const handleNew = async () => {
+    const id = await createTrip();
     onSelectTrip(id, 'settings');
   };
 
   const sorted = sortTrips(trips);
   const soon = sorted.filter(t => SOON_STATUSES.has(getTripStatus(t)));
   const past = sorted.filter(t => getTripStatus(t) === 'past');
-
   const count = trips.length;
 
   return (
@@ -25,7 +21,7 @@ export default function TripsListScreen({ onSelectTrip }) {
         <div className="trips-screen__header">
           <h1 className="trips-screen__title">החופשות שלי</h1>
           <p className="trips-screen__subtitle">
-            {count === 0 ? 'אין עדיין חופשות' : count === 1 ? 'חופשה אחת' : `${count} חופשות`}
+            {loading ? 'טוען...' : count === 0 ? 'אין עדיין חופשות' : count === 1 ? 'חופשה אחת' : `${count} חופשות`}
           </p>
         </div>
 
@@ -33,7 +29,7 @@ export default function TripsListScreen({ onSelectTrip }) {
           <button className="btn-primary" onClick={handleNew}>＋ חופשה חדשה</button>
         </div>
 
-        {trips.length === 0 && (
+        {!loading && trips.length === 0 && (
           <EmptyState
             emoji="🧳"
             title="אין לך חופשות עדיין"

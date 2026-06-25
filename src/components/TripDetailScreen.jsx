@@ -12,9 +12,14 @@ const TABS = [
   { id: 'settings',  label: 'הגדרות',    icon: '⚙️' },
 ];
 
-export default function TripDetailScreen({ tripId, initialTab = 'home', onBack, onTripChange }) {
+export default function TripDetailScreen({ tripId, initialTab = 'home', onBack, onTripChange, onDeleteTrip }) {
   const [activeTab, setActiveTab] = useState(initialTab);
   const { trip, updateTrip, addExpense, deleteExpense, addChecklistItem, toggleChecklistItem, deleteChecklistItem } = useTrip(tripId, onTripChange);
+
+  const handleDelete = async () => {
+    if (onDeleteTrip) await onDeleteTrip(tripId);
+    onBack();
+  };
 
   if (!trip) {
     return (
@@ -42,7 +47,7 @@ export default function TripDetailScreen({ tripId, initialTab = 'home', onBack, 
           {activeTab === 'home'      && <HomeTab trip={trip} />}
           {activeTab === 'budget'    && <BudgetTab trip={trip} addExpense={addExpense} deleteExpense={deleteExpense} />}
           {activeTab === 'checklist' && <ChecklistTab trip={trip} addChecklistItem={addChecklistItem} toggleChecklistItem={toggleChecklistItem} deleteChecklistItem={deleteChecklistItem} />}
-          {activeTab === 'settings'  && <SettingsTab trip={trip} updateTrip={updateTrip} onDeleted={onBack} />}
+          {activeTab === 'settings'  && <SettingsTab trip={trip} updateTrip={updateTrip} onDeleted={handleDelete} />}
         </div>
 
         <nav className="tab-bar">

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { removeItem, getItem, setItem } from '../../utils/storage.js';
 
 export default function SettingsTab({ trip, updateTrip, onDeleted }) {
   const [form, setForm] = useState({
@@ -32,13 +31,6 @@ export default function SettingsTab({ trip, updateTrip, onDeleted }) {
     });
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
-  };
-
-  const handleDelete = () => {
-    removeItem(`trip:${trip.id}`);
-    const order = getItem('trips:order', []).filter(id => id !== trip.id);
-    setItem('trips:order', order);
-    onDeleted();
   };
 
   return (
@@ -104,7 +96,7 @@ export default function SettingsTab({ trip, updateTrip, onDeleted }) {
             </div>
             <div className="confirm-box__actions">
               <button className="btn-ghost" onClick={() => setShowConfirm(false)}>ביטול</button>
-              <button className="btn-danger-filled" onClick={handleDelete}>כן, מחק</button>
+              <button className="btn-danger-filled" onClick={onDeleted}>כן, מחק</button>
             </div>
           </div>
         )}

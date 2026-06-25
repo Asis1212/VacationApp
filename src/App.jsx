@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { useTrips } from './hooks/useTrips.js';
 import TripsListScreen from './components/TripsListScreen.jsx';
 import TripDetailScreen from './components/TripDetailScreen.jsx';
 
 export default function App() {
   const [view, setView] = useState({ screen: 'list', tripId: null, initialTab: 'home' });
+  const { trips, loading, createTrip, deleteTrip, refreshTrip } = useTrips();
 
   const goToTrip = (tripId, initialTab = 'home') =>
     setView({ screen: 'detail', tripId, initialTab });
@@ -17,10 +19,18 @@ export default function App() {
         tripId={view.tripId}
         initialTab={view.initialTab}
         onBack={goToList}
-        onTripChange={() => {}}
+        onTripChange={refreshTrip}
+        onDeleteTrip={deleteTrip}
       />
     );
   }
 
-  return <TripsListScreen onSelectTrip={goToTrip} />;
+  return (
+    <TripsListScreen
+      trips={trips}
+      loading={loading}
+      createTrip={createTrip}
+      onSelectTrip={goToTrip}
+    />
+  );
 }
