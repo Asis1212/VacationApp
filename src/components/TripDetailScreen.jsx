@@ -1,0 +1,63 @@
+import { useState } from 'react';
+import { useTrip } from '../hooks/useTrip.js';
+import HomeTab from './tabs/HomeTab.jsx';
+import BudgetTab from './tabs/BudgetTab.jsx';
+import ChecklistTab from './tabs/ChecklistTab.jsx';
+import SettingsTab from './tabs/SettingsTab.jsx';
+
+const TABS = [
+  { id: 'home',      label: 'בית',       icon: '🏠' },
+  { id: 'budget',    label: 'תקציב',     icon: '💰' },
+  { id: 'checklist', label: "צ'ק-ליסט",  icon: '✅' },
+  { id: 'settings',  label: 'הגדרות',    icon: '⚙️' },
+];
+
+export default function TripDetailScreen({ tripId, initialTab = 'home', onBack, onTripChange }) {
+  const [activeTab, setActiveTab] = useState(initialTab);
+  const { trip, updateTrip, addExpense, deleteExpense, addChecklistItem, toggleChecklistItem, deleteChecklistItem } = useTrip(tripId, onTripChange);
+
+  if (!trip) {
+    return (
+      <div className="app-shell">
+        <div style={{ padding: '40px 20px', textAlign: 'center', color: 'var(--color-muted)' }}>
+          החופשה לא נמצאה
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="app-shell">
+      <div className="detail-screen">
+        <div className="detail-header">
+          <button className="detail-header__back" onClick={onBack}>
+            החופשות ←
+          </button>
+          <div className="detail-header__name">
+            {trip.name || 'חופשה ללא שם'}
+          </div>
+        </div>
+
+        <div className="tab-content">
+          {activeTab === 'home'      && <HomeTab trip={trip} />}
+          {activeTab === 'budget'    && <BudgetTab trip={trip} addExpense={addExpense} deleteExpense={deleteExpense} />}
+          {activeTab === 'checklist' && <ChecklistTab trip={trip} addChecklistItem={addChecklistItem} toggleChecklistItem={toggleChecklistItem} deleteChecklistItem={deleteChecklistItem} />}
+          {activeTab === 'settings'  && <SettingsTab trip={trip} updateTrip={updateTrip} onDeleted={onBack} />}
+        </div>
+
+        <nav className="tab-bar">
+          {TABS.map(tab => (
+            <button
+              key={tab.id}
+              className={`tab-bar__item${activeTab === tab.id ? ' tab-bar__item--active' : ''}`}
+              onClick={() => setActiveTab(tab.id)}
+            >
+              <span className="tab-bar__icon">{tab.icon}</span>
+              <span className="tab-bar__label">{tab.label}</span>
+            </button>
+          ))}
+        </nav>
+      </div>
+    </div>
+  );
+}

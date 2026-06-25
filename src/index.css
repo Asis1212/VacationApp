@@ -1,0 +1,1231 @@
+/* ============================================================
+   1. CSS Custom Properties
+   ============================================================ */
+:root {
+  --color-primary: #6C5CE7;
+  --color-primary-light: #8E7BF0;
+  --color-accent: #FF8A6B;
+  --color-mint: #13b894;
+  --color-rose: #FF5C7A;
+  --color-text: #191A2E;
+  --color-muted: #8A8FA6;
+  --color-bg: #F3F4FB;
+  --color-card: #ffffff;
+  --color-border: rgba(108, 92, 231, 0.10);
+  --radius-card: 22px;
+  --radius-pill: 999px;
+  --shadow-card: 0 2px 8px rgba(108,92,231,0.07), 0 8px 32px rgba(108,92,231,0.08);
+  --shadow-card-hover: 0 4px 16px rgba(108,92,231,0.12), 0 12px 40px rgba(108,92,231,0.12);
+  --shadow-btn: 0 4px 16px rgba(108,92,231,0.35);
+  --font-heading: 'Rubik', sans-serif;
+  --font-body: 'Heebo', sans-serif;
+  --max-w: 540px;
+}
+
+/* ============================================================
+   2. Reset + Base
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  background-image: radial-gradient(ellipse 70% 40% at 50% 0%, rgba(108,92,231,0.13) 0%, transparent 70%);
+  background-attachment: fixed;
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  min-height: 100dvh;
+}
+
+input, select, textarea {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-text);
+  background: #f7f7fb;
+  border: 1.5px solid #e0e0ef;
+  border-radius: 12px;
+  padding: 12px 14px;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="date"] {
+  -webkit-appearance: none;
+  appearance: none;
+  min-height: 48px;
+  min-width: 0;
+  width: 100%;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(108,92,231,0.12);
+  background: #fff;
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--color-muted);
+  font-weight: 400;
+}
+
+/* ============================================================
+   3. Typography
+   ============================================================ */
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+/* ============================================================
+   4. Layout — App shell
+   ============================================================ */
+.app-shell {
+  width: 100%;
+  max-width: var(--max-w);
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* ============================================================
+   5. Cards
+   ============================================================ */
+.card {
+  background: var(--color-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 20px;
+  border: 1px solid var(--color-border);
+}
+
+/* ============================================================
+   6. Buttons
+   ============================================================ */
+button {
+  font-family: var(--font-heading);
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
+}
+
+button:active {
+  transform: scale(0.96);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 14px 28px;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-btn);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 6px 24px rgba(108,92,231,0.45);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: rgba(108,92,231,0.09);
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 10px 20px;
+  border-radius: var(--radius-pill);
+}
+
+.btn-secondary:hover {
+  background: rgba(108,92,231,0.15);
+}
+
+.btn-danger {
+  background: rgba(255,92,122,0.1);
+  color: var(--color-rose);
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 10px 20px;
+  border-radius: var(--radius-pill);
+}
+
+.btn-danger:hover {
+  background: rgba(255,92,122,0.18);
+}
+
+.btn-danger-filled {
+  background: var(--color-rose);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 10px 20px;
+  border-radius: var(--radius-pill);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  padding: 8px 12px;
+  border-radius: var(--radius-pill);
+}
+
+.btn-ghost:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+.btn-icon {
+  background: transparent;
+  color: var(--color-muted);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.btn-icon:hover {
+  background: rgba(255,92,122,0.1);
+  color: var(--color-rose);
+}
+
+/* ============================================================
+   7. Form helpers
+   ============================================================ */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.form-error {
+  font-size: 0.8rem;
+  color: var(--color-rose);
+  margin-top: 2px;
+}
+
+.grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.grid-2col > * {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.grid-2col input,
+.grid-2col select {
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+.amount-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.amount-wrapper input {
+  padding-right: 2.8rem;
+}
+
+.amount-currency-symbol {
+  position: absolute;
+  right: 14px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-primary);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ============================================================
+   8. Progress Bars
+   ============================================================ */
+.progress-bar-track {
+  background: rgba(108,92,231,0.1);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  height: 8px;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  transition: width 0.4s ease;
+  max-width: 100%;
+}
+
+.progress-bar-fill--mint {
+  background: linear-gradient(90deg, var(--color-mint) 0%, #20dbb5 100%);
+}
+
+.progress-bar-fill--rose {
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--color-rose),
+    var(--color-rose) 4px,
+    #ff8fa0 4px,
+    #ff8fa0 8px
+  );
+}
+
+.progress-bar-track--sm {
+  height: 5px;
+}
+
+/* ============================================================
+   9. Status Badges
+   ============================================================ */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-family: var(--font-heading);
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+
+.badge--draft    { background: rgba(138,143,166,0.15); color: var(--color-muted); }
+.badge--upcoming { background: rgba(108,92,231,0.12); color: var(--color-primary); }
+.badge--today    { background: rgba(255,138,107,0.18); color: #e06030; }
+.badge--active   { background: rgba(19,184,148,0.15); color: #0d9170; }
+.badge--past     { background: rgba(138,143,166,0.12); color: var(--color-muted); }
+
+/* ============================================================
+   10. Category Chips
+   ============================================================ */
+.chips-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid #e0e0ef;
+  background: #f7f7fb;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.chip:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.chip--selected {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(108,92,231,0.3);
+}
+
+/* ============================================================
+   11. Trip Card
+   ============================================================ */
+.trip-card {
+  background: var(--color-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
+  padding: 18px 20px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  text-align: right;
+}
+
+.trip-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.trip-card:active {
+  transform: scale(0.98);
+}
+
+.trip-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.trip-card__name {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--color-text);
+  flex: 1;
+  min-width: 0;
+}
+
+.trip-card__destination {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  margin-bottom: 4px;
+}
+
+.trip-card__dates {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  margin-bottom: 10px;
+}
+
+.trip-card__budget-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  margin-bottom: 4px;
+  margin-top: 10px;
+}
+
+/* ============================================================
+   12. Trips List Screen
+   ============================================================ */
+.trips-screen {
+  padding: 0 0 32px;
+}
+
+.trips-screen__header {
+  padding: 52px 20px 20px;
+  background: linear-gradient(180deg, rgba(108,92,231,0.06) 0%, transparent 100%);
+}
+
+.trips-screen__title {
+  font-family: var(--font-heading);
+  font-size: 1.9rem;
+  font-weight: 900;
+  color: var(--color-text);
+  margin-bottom: 4px;
+}
+
+.trips-screen__subtitle {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  font-weight: 500;
+}
+
+.trips-screen__cta {
+  padding: 16px 20px 8px;
+}
+
+.trips-screen__cta .btn-primary {
+  width: 100%;
+}
+
+.trips-section {
+  padding: 16px 20px 0;
+}
+
+.trips-section__title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-family: var(--font-heading);
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 10px;
+}
+
+.trips-section__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ============================================================
+   13. Empty State
+   ============================================================ */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 56px 32px;
+  gap: 12px;
+}
+
+.empty-state__emoji {
+  font-size: 3.5rem;
+  line-height: 1;
+}
+
+.empty-state__title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.empty-state__desc {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  max-width: 260px;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   14. Trip Detail Screen + Tab Bar
+   ============================================================ */
+.detail-screen {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  width: 100%;
+}
+
+.detail-header {
+  display: flex;
+  align-items: center;
+  padding: 52px 20px 12px;
+  gap: 10px;
+  background: linear-gradient(180deg, rgba(108,92,231,0.06) 0%, transparent 100%);
+}
+
+.detail-header__back {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  background: rgba(108,92,231,0.08);
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: 7px 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: background 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.detail-header__back:hover {
+  background: rgba(108,92,231,0.15);
+}
+
+.detail-header__name {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tab-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 88px;
+}
+
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: var(--max-w);
+  background: rgba(255, 255, 255, 0.8);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(108,92,231,0.10);
+  display: flex;
+  z-index: 100;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.tab-bar__item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 10px 4px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-muted);
+  transition: color 0.15s;
+}
+
+.tab-bar__item--active {
+  color: var(--color-primary);
+}
+
+.tab-bar__icon {
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+.tab-bar__label {
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  font-weight: 700;
+}
+
+/* ============================================================
+   15. Flight Path Hero
+   ============================================================ */
+.flight-hero {
+  position: relative;
+  border-radius: 0 0 28px 28px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #6C5CE7 0%, #8E7BF0 55%, #FF8A6B 100%);
+  color: #fff;
+}
+
+.flight-hero__blob {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.07);
+  pointer-events: none;
+}
+
+.flight-hero__blob:nth-child(1) { width: 200px; height: 200px; top: -60px; right: -60px; }
+.flight-hero__blob:nth-child(2) { width: 120px; height: 120px; bottom: 20px; left: -30px; }
+.flight-hero__blob:nth-child(3) { width: 80px; height: 80px; top: 40px; left: 30%; }
+
+.flight-hero__inner {
+  position: relative;
+  padding: 28px 20px 0;
+  z-index: 1;
+}
+
+.flight-hero__label {
+  font-size: 0.8rem;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  opacity: 0.75;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+
+.flight-hero__num {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 4.5rem;
+  line-height: 1;
+}
+
+.flight-hero__hms {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  opacity: 0.85;
+  letter-spacing: 0.02em;
+  margin-top: 4px;
+}
+
+.flight-hero__days-label {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: 0.8;
+  margin-right: 6px;
+}
+
+.flight-hero__daterange {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  margin-top: 8px;
+}
+
+.flight-hero__length {
+  font-size: 0.8rem;
+  opacity: 0.65;
+  margin-top: 2px;
+  margin-bottom: 8px;
+}
+
+.flight-hero__message {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.flight-hero__message-sub {
+  font-size: 0.85rem;
+  opacity: 0.75;
+  margin-bottom: 8px;
+}
+
+.flight-hero__svg-wrap {
+  margin: 8px -20px 0;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.flight-hero__svg-wrap svg {
+  display: block;
+  width: 100%;
+}
+
+.plane-group {
+  transition: transform 0.8s ease-in-out;
+}
+
+/* ============================================================
+   16. Home Tab
+   ============================================================ */
+.home-tab__cards {
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.summary-card {
+  background: var(--color-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
+  padding: 18px 20px;
+}
+
+.summary-card__title {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--color-muted);
+  margin-bottom: 10px;
+}
+
+.summary-card__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.summary-card__value {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--color-text);
+}
+
+.summary-card__sub {
+  font-size: 0.82rem;
+  color: var(--color-muted);
+}
+
+.summary-card--warning .summary-card__value {
+  color: var(--color-rose);
+}
+
+.no-dates-prompt {
+  padding: 28px 20px;
+  text-align: center;
+}
+
+.no-dates-prompt__emoji { font-size: 2.5rem; margin-bottom: 10px; }
+.no-dates-prompt__text { font-size: 0.9rem; color: var(--color-muted); line-height: 1.5; }
+
+/* ============================================================
+   17. Budget Tab
+   ============================================================ */
+.budget-tab {
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.add-expense-card {
+  background: var(--color-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
+  padding: 20px;
+}
+
+.add-expense-card__title {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: var(--color-text);
+}
+
+.add-expense-card .form-group + .form-group {
+  margin-top: 12px;
+}
+
+.add-expense-card .chips-row {
+  margin: 12px 0 4px;
+}
+
+.add-expense-card .btn-primary {
+  margin-top: 14px;
+  width: 100%;
+}
+
+.budget-status-card {
+  background: var(--color-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
+  padding: 18px 20px;
+}
+
+.budget-status-card__amounts {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 10px;
+}
+
+.budget-status-card__spent {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.6rem;
+  color: var(--color-text);
+  line-height: 1;
+}
+
+.budget-status-card__remaining {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  text-align: left;
+}
+
+.budget-status-card__remaining--over {
+  color: var(--color-rose);
+  font-weight: 700;
+}
+
+.over-budget-warning {
+  background: rgba(255,92,122,0.08);
+  border: 1px solid rgba(255,92,122,0.2);
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  color: var(--color-rose);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.category-breakdown {
+  background: var(--color-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
+  padding: 18px 20px;
+}
+
+.category-breakdown__title {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--color-muted);
+  margin-bottom: 14px;
+}
+
+.category-breakdown__item {
+  margin-bottom: 14px;
+}
+
+.category-breakdown__item:last-child { margin-bottom: 0; }
+
+.category-breakdown__label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  margin-bottom: 5px;
+}
+
+.category-breakdown__label-name { font-weight: 600; color: var(--color-text); }
+.category-breakdown__label-amount { color: var(--color-muted); font-weight: 500; }
+
+.expenses-list {
+  background: var(--color-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
+  padding: 18px 20px;
+}
+
+.expenses-list__title {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--color-muted);
+  margin-bottom: 12px;
+}
+
+.expense-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f8;
+}
+
+.expense-item:last-child { border-bottom: none; }
+
+.expense-item__emoji {
+  font-size: 1.2rem;
+  width: 32px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.expense-item__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.expense-item__cat {
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  margin-bottom: 1px;
+}
+
+.expense-item__note {
+  font-size: 0.82rem;
+  color: var(--color-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.expense-item__right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.expense-item__amount {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--color-text);
+}
+
+.expense-item__date {
+  font-size: 0.72rem;
+  color: var(--color-muted);
+}
+
+/* ============================================================
+   18. Checklist Tab
+   ============================================================ */
+.checklist-tab {
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.checklist-header-card {
+  background: var(--color-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
+  padding: 18px 20px;
+}
+
+.checklist-header-card__title {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--color-muted);
+  margin-bottom: 8px;
+}
+
+.checklist-header-card__progress-text {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+
+.checklist-cat-card {
+  background: var(--color-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
+  padding: 16px 20px;
+}
+
+.checklist-cat-card__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.checklist-cat-card__emoji { font-size: 1.2rem; }
+
+.checklist-cat-card__title {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  flex: 1;
+  color: var(--color-text);
+}
+
+.checklist-cat-card__count {
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  font-weight: 600;
+}
+
+.checklist-cat-card__bar {
+  margin-bottom: 12px;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f8;
+}
+
+.checklist-item:last-of-type { border-bottom: none; }
+
+.checklist-item__checkbox {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 2px solid #d0d0e8;
+  background: #fff;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  margin-top: 2px;
+}
+
+.checklist-item__checkbox--done {
+  background: var(--color-mint);
+  border-color: var(--color-mint);
+  color: #fff;
+  font-size: 0.75rem;
+}
+
+.checklist-item__text {
+  flex: 1;
+  font-size: 0.88rem;
+  color: var(--color-text);
+  line-height: 1.45;
+}
+
+.checklist-item__text--done {
+  text-decoration: line-through;
+  color: var(--color-muted);
+}
+
+.checklist-add-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #f0f0f8;
+}
+
+.checklist-add-row input {
+  flex: 1;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  border-radius: 10px;
+}
+
+.checklist-add-row .btn-add {
+  background: rgba(108,92,231,0.1);
+  color: var(--color-primary);
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   19. Settings Tab
+   ============================================================ */
+.settings-tab {
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.settings-form-card {
+  background: var(--color-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
+  padding: 20px;
+}
+
+.settings-form-card__title {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--color-text);
+}
+
+.settings-form-card .grid-2col {
+  margin-top: 12px;
+}
+
+.settings-form-card .btn-primary {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.settings-danger-card {
+  background: var(--color-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(255,92,122,0.2);
+  padding: 20px;
+}
+
+.settings-danger-card__title {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--color-rose);
+  margin-bottom: 12px;
+}
+
+.settings-danger-card .btn-danger {
+  width: 100%;
+}
+
+.confirm-box {
+  background: rgba(255,92,122,0.06);
+  border: 1px solid rgba(255,92,122,0.2);
+  border-radius: 14px;
+  padding: 14px;
+  margin-top: 12px;
+}
+
+.confirm-box__text {
+  font-size: 0.85rem;
+  color: var(--color-text);
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.confirm-box__actions {
+  display: flex;
+  gap: 8px;
+}
+
+.confirm-box__actions button {
+  flex: 1;
+}
+
+/* ============================================================
+   20. Animations
+   ============================================================ */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.25s ease forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plane-group { transition: none !important; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
