@@ -606,7 +606,7 @@ button:active {
   flex-direction: column;
   align-items: center;
   gap: 3px;
-  padding: 10px 4px;
+  padding: 12px 4px;
   background: transparent;
   border: none;
   cursor: pointer;
