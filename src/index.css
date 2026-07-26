@@ -1211,7 +1211,138 @@ button:active {
 }
 
 /* ============================================================
-   20. Animations
+   20. Budget Analytics
+   ============================================================ */
+.analytics-section {
+  background: var(--color-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.analytics-section__title {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+/* Donut chart */
+.donut-chart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.donut-chart__svg {
+  overflow: visible;
+}
+
+.donut-chart__center-label {
+  font-size: 18px;
+}
+
+.donut-chart__center-pct {
+  font-size: 14px;
+  font-weight: 700;
+  fill: var(--color-text);
+}
+
+.donut-chart__center-name {
+  font-size: 9px;
+  fill: var(--color-muted);
+}
+
+.donut-chart__legend {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.donut-chart__legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+}
+
+.donut-chart__legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.donut-chart__legend-emoji {
+  flex-shrink: 0;
+}
+
+.donut-chart__legend-name {
+  flex: 1;
+  color: var(--color-text);
+}
+
+.donut-chart__legend-amount {
+  color: var(--color-text);
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.donut-chart__legend-pct {
+  color: var(--color-muted);
+  font-size: 0.75rem;
+  min-width: 30px;
+  text-align: left;
+}
+
+/* Daily bar chart */
+.daily-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.daily-chart__title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.daily-chart__scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 4px;
+}
+
+.daily-chart__svg {
+  display: block;
+}
+
+.daily-chart__label {
+  font-size: 8px;
+  fill: var(--color-muted);
+}
+
+.daily-chart__range {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  text-align: center;
+}
+
+.daily-chart__avg {
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  text-align: center;
+}
+
+/* ============================================================
+   21. Animations
    ============================================================ */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(10px); }

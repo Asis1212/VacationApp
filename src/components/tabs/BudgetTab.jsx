@@ -4,6 +4,8 @@ import { formatAmount, formatDate } from '../../utils/formatters.js';
 import { getTotalSpent } from '../../utils/tripHelpers.js';
 import CategoryChip from '../shared/CategoryChip.jsx';
 import ProgressBar from '../shared/ProgressBar.jsx';
+import DonutChart from '../shared/DonutChart.jsx';
+import DailyBarChart from '../shared/DailyBarChart.jsx';
 
 function todayISO() {
   return new Date().toISOString().slice(0, 10);
@@ -117,23 +119,27 @@ export default function BudgetTab({ trip, addExpense, deleteExpense }) {
         </div>
       )}
 
-      {/* Per-category breakdown */}
+      {/* Analytics charts */}
       {catTotals.length > 0 && (
-        <div className="category-breakdown">
-          <div className="category-breakdown__title">פירוט לפי קטגוריה</div>
-          {catTotals.map(([catId, total]) => {
-            const c = getCategoryById(catId);
-            const pct = budget > 0 ? (total / budget) * 100 : 0;
-            return (
-              <div className="category-breakdown__item" key={catId}>
-                <div className="category-breakdown__label">
-                  <span className="category-breakdown__label-name">{c.emoji} {c.label}</span>
-                  <span className="category-breakdown__label-amount">{formatAmount(total, trip.currency)}</span>
-                </div>
-                <ProgressBar pct={pct} small />
-              </div>
-            );
-          })}
+        <div className="analytics-section">
+          <div className="analytics-section__title">ניתוח הוצאות</div>
+
+          <DonutChart
+            slices={catTotals.map(([catId, value]) => {
+              const c = getCategoryById(catId);
+              return { id: catId, value, emoji: c.emoji, label: c.label };
+            })}
+            total={spent}
+            currency={trip.currency}
+            formatAmount={formatAmount}
+          />
+
+          <DailyBarChart
+            expenses={expenses}
+            startDate={trip.startDate}
+            endDate={trip.endDate}
+            currency={trip.currency}
+          />
         </div>
       )}
 
