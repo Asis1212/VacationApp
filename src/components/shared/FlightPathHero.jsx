@@ -58,21 +58,15 @@ export default function FlightPathHero({ daysRemaining, destination, status }) {
           {destination || 'יעד'}
         </text>
 
-        {/* Plane */}
+        {/* Plane — inline SVG path, no emoji */}
         <g
           className="plane-group"
           transform={`translate(${pt.x}, ${pt.y}) rotate(${angle})`}
         >
-          <text
-            x={0}
-            y={0}
-            textAnchor="middle"
-            dominantBaseline="central"
-            fontSize="14"
-            style={{ userSelect: 'none' }}
-          >
-            ✈
-          </text>
+          <path
+            d="M0 -7 L-3.5 1 L-1.5 0.5 L-1.5 4 L0 3 L1.5 4 L1.5 0.5 L3.5 1 Z"
+            fill="rgba(255,255,255,0.95)"
+          />
         </g>
       </svg>
     </div>

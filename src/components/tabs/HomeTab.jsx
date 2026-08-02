@@ -3,6 +3,7 @@ import { getTripLength, getTotalSpent } from '../../utils/tripHelpers.js';
 import { formatAmount, formatDateRange } from '../../utils/formatters.js';
 import FlightPathHero from '../shared/FlightPathHero.jsx';
 import ProgressBar from '../shared/ProgressBar.jsx';
+import Icon from '../shared/Icon.jsx';
 
 function pad(n) {
   return String(n).padStart(2, '0');
@@ -35,7 +36,10 @@ export default function HomeTab({ trip }) {
           {noDates && (
             <>
               <div className="flight-hero__label">תכנן את החופשה שלך</div>
-              <div className="flight-hero__message">✈️ לאן אנחנו טסים?</div>
+              <div className="flight-hero__message">
+                <Icon name="Plane" size={28} style={{ verticalAlign: 'middle', marginLeft: 8 }} />
+                לאן אנחנו טסים?
+              </div>
               <div className="flight-hero__message-sub">הוסף תאריכים בלשונית ההגדרות</div>
             </>
           )}
@@ -54,7 +58,10 @@ export default function HomeTab({ trip }) {
           {status === 'today' && (
             <>
               <div className="flight-hero__label">היום</div>
-              <div className="flight-hero__message">יוצאים היום! ✈️</div>
+              <div className="flight-hero__message">
+                יוצאים היום!
+                <Icon name="Plane" size={26} style={{ verticalAlign: 'middle', marginRight: 8 }} />
+              </div>
               <div className="flight-hero__hms">{pad(hours)}:{pad(minutes)}:{pad(seconds)}</div>
             </>
           )}
@@ -62,14 +69,20 @@ export default function HomeTab({ trip }) {
           {status === 'active' && (
             <>
               <div className="flight-hero__label">בחופשה עכשיו</div>
-              <div className="flight-hero__message">תהנו מכל רגע 🌴</div>
+              <div className="flight-hero__message">
+                תהנו מכל רגע
+                <Icon name="Sun" size={26} style={{ verticalAlign: 'middle', marginRight: 8 }} />
+              </div>
             </>
           )}
 
           {status === 'past' && (
             <>
               <div className="flight-hero__label">החופשה הסתיימה</div>
-              <div className="flight-hero__message">תודה על הזיכרונות ✨</div>
+              <div className="flight-hero__message">
+                תודה על הזיכרונות
+                <Icon name="Sparkles" size={24} style={{ verticalAlign: 'middle', marginRight: 8 }} />
+              </div>
             </>
           )}
 

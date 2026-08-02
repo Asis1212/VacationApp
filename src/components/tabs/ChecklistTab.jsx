@@ -1,5 +1,20 @@
 import { useState } from 'react';
 import ProgressBar from '../shared/ProgressBar.jsx';
+import Icon from '../shared/Icon.jsx';
+
+// Fallback for rows saved during icon-migration period where emoji was undefined
+const TITLE_EMOJI = {
+  'מסמכים וכרטיסים': '📄',
+  'צרכים דתיים':      '✡️',
+  'אריזה וציוד':      '🧳',
+  'כספים':            '💳',
+  'לפני היציאה מהבית': '🏠',
+};
+
+function resolveEmoji(cat) {
+  if (cat.emoji && cat.emoji !== 'undefined') return cat.emoji;
+  return TITLE_EMOJI[cat.title] ?? '📋';
+}
 
 export default function ChecklistTab({ trip, addChecklistItem, toggleChecklistItem, deleteChecklistItem }) {
   const checklist = trip.checklist || [];
@@ -34,7 +49,7 @@ export default function ChecklistTab({ trip, addChecklistItem, toggleChecklistIt
         return (
           <div className="checklist-cat-card" key={cat.id}>
             <div className="checklist-cat-card__header">
-              <span className="checklist-cat-card__emoji">{cat.emoji}</span>
+              <span className="checklist-cat-card__emoji">{resolveEmoji(cat)}</span>
               <span className="checklist-cat-card__title">{cat.title}</span>
               <span className="checklist-cat-card__count">{catDone}/{cat.items.length}</span>
             </div>
@@ -50,7 +65,7 @@ export default function ChecklistTab({ trip, addChecklistItem, toggleChecklistIt
                   onClick={() => toggleChecklistItem(cat.id, item.id)}
                   aria-label={item.done ? 'סמן כלא הושלם' : 'סמן כהושלם'}
                 >
-                  {item.done && '✓'}
+                  {item.done && <Icon name="Check" size={14} />}
                 </button>
                 <span className={`checklist-item__text${item.done ? ' checklist-item__text--done' : ''}`}>
                   {item.text}
@@ -60,7 +75,7 @@ export default function ChecklistTab({ trip, addChecklistItem, toggleChecklistIt
                   onClick={() => deleteChecklistItem(cat.id, item.id)}
                   title="מחיקה"
                 >
-                  ✕
+                  <Icon name="X" size={14} />
                 </button>
               </div>
             ))}

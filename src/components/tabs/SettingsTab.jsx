@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Icon from '../shared/Icon.jsx';
 
 export default function SettingsTab({ trip, updateTrip, onDeleted }) {
   const [form, setForm] = useState({
@@ -79,7 +80,9 @@ export default function SettingsTab({ trip, updateTrip, onDeleted }) {
         </div>
 
         <button className="btn-primary" onClick={handleSave}>
-          {saved ? '✓ נשמר!' : 'שמירת שינויים'}
+          {saved
+            ? <><Icon name="Check" size={16} style={{ verticalAlign: 'middle', marginLeft: 6 }} /> נשמר!</>
+            : 'שמירת שינויים'}
         </button>
       </div>
 
@@ -87,7 +90,8 @@ export default function SettingsTab({ trip, updateTrip, onDeleted }) {
         <div className="settings-danger-card__title">אזור מסוכן</div>
         {!showConfirm ? (
           <button className="btn-danger" onClick={() => setShowConfirm(true)}>
-            🗑️ מחיקת החופשה
+            <Icon name="Trash2" size={15} style={{ verticalAlign: 'middle', marginLeft: 6 }} />
+            מחיקת החופשה
           </button>
         ) : (
           <div className="confirm-box">

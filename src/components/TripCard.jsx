@@ -2,6 +2,7 @@ import { getTripStatus, getTripLength, getTotalSpent } from '../utils/tripHelper
 import { formatAmount, formatDateRange } from '../utils/formatters.js';
 import StatusBadge from './StatusBadge.jsx';
 import ProgressBar from './shared/ProgressBar.jsx';
+import Icon from './shared/Icon.jsx';
 
 export default function TripCard({ trip, onClick }) {
   const status = getTripStatus(trip);
@@ -22,7 +23,10 @@ export default function TripCard({ trip, onClick }) {
       </div>
 
       {trip.destination && (
-        <div className="trip-card__destination">📍 {trip.destination}</div>
+        <div className="trip-card__destination">
+          <Icon name="MapPin" size={13} style={{ verticalAlign: 'middle', marginLeft: 3, opacity: 0.6 }} />
+          {trip.destination}
+        </div>
       )}
 
       {trip.startDate ? (

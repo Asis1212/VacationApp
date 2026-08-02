@@ -4,12 +4,13 @@ import HomeTab from './tabs/HomeTab.jsx';
 import BudgetTab from './tabs/BudgetTab.jsx';
 import ChecklistTab from './tabs/ChecklistTab.jsx';
 import SettingsTab from './tabs/SettingsTab.jsx';
+import Icon from './shared/Icon.jsx';
 
 const TABS = [
-  { id: 'home',      label: 'בית',       icon: '🏠' },
-  { id: 'budget',    label: 'תקציב',     icon: '💰' },
-  { id: 'checklist', label: "צ'ק-ליסט",  icon: '✅' },
-  { id: 'settings',  label: 'הגדרות',    icon: '⚙️' },
+  { id: 'home',      label: 'בית',       icon: 'Home' },
+  { id: 'budget',    label: 'תקציב',     icon: 'CreditCard' },
+  { id: 'checklist', label: "צ'ק-ליסט",  icon: 'ListChecks' },
+  { id: 'settings',  label: 'הגדרות',    icon: 'Settings2' },
 ];
 
 export default function TripDetailScreen({ tripId, initialTab = 'home', onBack, onTripChange, onDeleteTrip }) {
@@ -36,7 +37,7 @@ export default function TripDetailScreen({ tripId, initialTab = 'home', onBack, 
       <div className="detail-screen">
         <div className="detail-header">
           <button className="detail-header__back" onClick={onBack}>
-            החופשות ←
+            <Icon name="ArrowLeft" size={16} /> החופשות
           </button>
           <div className="detail-header__name">
             {trip.name || 'חופשה ללא שם'}
@@ -57,7 +58,7 @@ export default function TripDetailScreen({ tripId, initialTab = 'home', onBack, 
               className={`tab-bar__item${activeTab === tab.id ? ' tab-bar__item--active' : ''}`}
               onClick={() => setActiveTab(tab.id)}
             >
-              <span className="tab-bar__icon">{tab.icon}</span>
+              <span className="tab-bar__icon"><Icon name={tab.icon} size={22} /></span>
               <span className="tab-bar__label">{tab.label}</span>
             </button>
           ))}

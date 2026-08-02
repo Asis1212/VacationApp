@@ -6,6 +6,7 @@ import CategoryChip from '../shared/CategoryChip.jsx';
 import ProgressBar from '../shared/ProgressBar.jsx';
 import DonutChart from '../shared/DonutChart.jsx';
 import DailyBarChart from '../shared/DailyBarChart.jsx';
+import Icon from '../shared/Icon.jsx';
 
 function todayISO() {
   return new Date().toISOString().slice(0, 10);
@@ -113,7 +114,8 @@ export default function BudgetTab({ trip, addExpense, deleteExpense }) {
           <ProgressBar pct={spentPct} variant={isOver ? 'rose' : 'primary'} />
           {isOver && (
             <div className="over-budget-warning">
-              ⚠️ חרגת מהתקציב שהגדרת
+              <Icon name="TriangleAlert" size={16} />
+              חרגת מהתקציב שהגדרת
             </div>
           )}
         </div>
@@ -160,7 +162,9 @@ export default function BudgetTab({ trip, addExpense, deleteExpense }) {
                   <div className="expense-item__amount">{formatAmount(e.amount, trip.currency)}</div>
                   <div className="expense-item__date">{formatDate(e.date)}</div>
                 </div>
-                <button className="btn-icon" onClick={() => deleteExpense(e.id)} title="מחיקה">✕</button>
+                <button className="btn-icon" onClick={() => deleteExpense(e.id)} title="מחיקה">
+                  <Icon name="X" size={14} />
+                </button>
               </div>
             );
           })}

@@ -1,6 +1,6 @@
 import { getTripStatus, sortTrips } from '../utils/tripHelpers.js';
 import TripCard from './TripCard.jsx';
-import EmptyState from './shared/EmptyState.jsx';
+import Icon from './shared/Icon.jsx';
 
 const SOON_STATUSES = new Set(['draft', 'upcoming', 'today', 'active']);
 
@@ -26,15 +26,31 @@ export default function TripsListScreen({ trips, loading, createTrip, onSelectTr
         </div>
 
         <div className="trips-screen__cta">
-          <button className="btn-primary" onClick={handleNew}>＋ חופשה חדשה</button>
+          <button className="btn-primary" onClick={handleNew}>
+            <Icon name="plus" size={17} style={{ verticalAlign: 'middle', marginLeft: 6 }} />
+            חופשה חדשה
+          </button>
         </div>
 
         {!loading && trips.length === 0 && (
-          <EmptyState
-            emoji="🧳"
-            title="אין לך חופשות עדיין"
-            desc="לחץ על הכפתור למעלה כדי לתכנן את החופשה הבאה שלך"
-          />
+          <div className="empty-first-trip fade-in-up">
+            <div className="empty-first-trip__plane">
+              <Icon name="Plane" size={56} />
+            </div>
+            <h2 className="empty-first-trip__title">אין לך חופשות עדיין</h2>
+            <p className="empty-first-trip__desc">לחץ על הכפתור למעלה כדי לתכנן את החופשה הבאה שלך</p>
+            <div className="empty-first-trip__features">
+              <div className="empty-first-trip__feature">
+                <Icon name="CreditCard" size={15} /><span>מעקב תקציב</span>
+              </div>
+              <div className="empty-first-trip__feature">
+                <Icon name="ListChecks" size={15} /><span>צ׳ק-ליסט</span>
+              </div>
+              <div className="empty-first-trip__feature">
+                <Icon name="Plane" size={15} /><span>ספירה לאחור</span>
+              </div>
+            </div>
+          </div>
         )}
 
         {soon.length > 0 && (
