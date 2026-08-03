@@ -1221,7 +1221,7 @@ button:active {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 22px;
 }
 
 .analytics-section__title {
@@ -1229,6 +1229,70 @@ button:active {
   font-size: 1rem;
   font-weight: 700;
   color: var(--color-text);
+}
+
+/* Spending Insights */
+.spending-insights {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.spending-insights__chips {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.insight-chip {
+  background: rgba(108,92,231,0.06);
+  border: 1px solid rgba(108,92,231,0.1);
+  border-radius: 14px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.insight-chip__label {
+  font-size: 0.68rem;
+  color: var(--color-muted);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.insight-chip__value {
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.comparison-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.comparison-badge--better {
+  background: rgba(19,184,148,0.1);
+  color: #0d9e7f;
+  border: 1px solid rgba(19,184,148,0.2);
+}
+
+.comparison-badge--worse {
+  background: rgba(255,92,122,0.08);
+  color: #d9365a;
+  border: 1px solid rgba(255,92,122,0.15);
+}
+
+.comparison-badge__icon {
+  font-size: 1rem;
+  line-height: 1;
 }
 
 /* Donut chart */
@@ -1243,18 +1307,19 @@ button:active {
   overflow: visible;
 }
 
-.donut-chart__center-label {
-  font-size: 18px;
+.donut-chart__center-emoji {
+  font-size: 20px;
 }
 
 .donut-chart__center-pct {
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 800;
   fill: var(--color-text);
+  font-family: var(--font-heading);
 }
 
 .donut-chart__center-name {
-  font-size: 9px;
+  font-size: 8.5px;
   fill: var(--color-muted);
 }
 
@@ -1262,7 +1327,7 @@ button:active {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .donut-chart__legend-item {
@@ -1270,6 +1335,18 @@ button:active {
   align-items: center;
   gap: 8px;
   font-size: 0.82rem;
+  padding: 6px 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.donut-chart__legend-item:hover {
+  background: rgba(108,92,231,0.05);
+}
+
+.donut-chart__legend-item--active {
+  background: rgba(108,92,231,0.08);
 }
 
 .donut-chart__legend-dot {
@@ -1297,7 +1374,7 @@ button:active {
 .donut-chart__legend-pct {
   color: var(--color-muted);
   font-size: 0.75rem;
-  min-width: 30px;
+  min-width: 32px;
   text-align: left;
 }
 
@@ -1317,7 +1394,7 @@ button:active {
 .daily-chart__scroll {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  padding-bottom: 4px;
+  padding-bottom: 2px;
 }
 
 .daily-chart__svg {
@@ -1325,8 +1402,30 @@ button:active {
 }
 
 .daily-chart__label {
-  font-size: 8px;
+  font-size: 7.5px;
   fill: var(--color-muted);
+}
+
+.daily-chart__tooltip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--color-text);
+  color: #fff;
+  border-radius: 10px;
+  padding: 7px 12px;
+  font-size: 0.8rem;
+  animation: fadeInUp 0.12s ease;
+}
+
+.daily-chart__tooltip-date {
+  opacity: 0.7;
+  font-size: 0.75rem;
+}
+
+.daily-chart__tooltip-amount {
+  font-family: var(--font-heading);
+  font-weight: 700;
 }
 
 .daily-chart__range {
@@ -1335,10 +1434,20 @@ button:active {
   text-align: center;
 }
 
-.daily-chart__avg {
-  font-size: 0.78rem;
+.daily-chart__stats {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.daily-chart__stat {
+  font-size: 0.75rem;
   color: var(--color-muted);
-  text-align: center;
+}
+
+.daily-chart__stat strong {
+  color: var(--color-text);
+  font-weight: 600;
 }
 
 /* ============================================================

@@ -13,7 +13,7 @@ const TABS = [
   { id: 'settings',  label: 'הגדרות',    icon: 'Settings2' },
 ];
 
-export default function TripDetailScreen({ tripId, initialTab = 'home', onBack, onTripChange, onDeleteTrip }) {
+export default function TripDetailScreen({ tripId, initialTab = 'home', onBack, onTripChange, onDeleteTrip, allTrips = [] }) {
   const [activeTab, setActiveTab] = useState(initialTab);
   const { trip, updateTrip, addExpense, deleteExpense, addChecklistItem, toggleChecklistItem, deleteChecklistItem } = useTrip(tripId, onTripChange);
 
@@ -46,7 +46,7 @@ export default function TripDetailScreen({ tripId, initialTab = 'home', onBack, 
 
         <div className="tab-content">
           {activeTab === 'home'      && <HomeTab trip={trip} />}
-          {activeTab === 'budget'    && <BudgetTab trip={trip} addExpense={addExpense} deleteExpense={deleteExpense} />}
+          {activeTab === 'budget'    && <BudgetTab trip={trip} addExpense={addExpense} deleteExpense={deleteExpense} allTrips={allTrips} />}
           {activeTab === 'checklist' && <ChecklistTab trip={trip} addChecklistItem={addChecklistItem} toggleChecklistItem={toggleChecklistItem} deleteChecklistItem={deleteChecklistItem} />}
           {activeTab === 'settings'  && <SettingsTab trip={trip} updateTrip={updateTrip} onDeleted={handleDelete} />}
         </div>

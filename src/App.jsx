@@ -34,6 +34,7 @@ export default function App() {
         onBack={goToList}
         onTripChange={refreshTrip}
         onDeleteTrip={deleteTrip}
+        allTrips={trips}
       />
     );
   }

@@ -7,6 +7,7 @@ import ProgressBar from '../components/ProgressBar.jsx';
 import DonutChart from '../components/DonutChart.jsx';
 import DailyBarChart from '../components/DailyBarChart.jsx';
 import CurrencyConverter from '../components/CurrencyConverter.jsx';
+import SpendingInsights from '../components/SpendingInsights.jsx';
 import Icon from '../components/Icon.jsx';
 
 function todayISO() {
@@ -18,7 +19,7 @@ function getCurrencySymbol(code) {
   return map[code] || code;
 }
 
-export default function BudgetTab({ trip, addExpense, deleteExpense }) {
+export default function BudgetTab({ trip, addExpense, deleteExpense, allTrips = [] }) {
   const [amount, setAmount] = useState('');
   const [cat, setCat] = useState('other');
   const [note, setNote] = useState('');
@@ -127,6 +128,8 @@ export default function BudgetTab({ trip, addExpense, deleteExpense }) {
       {catTotals.length > 0 && (
         <div className="analytics-section">
           <div className="analytics-section__title">ניתוח הוצאות</div>
+
+          <SpendingInsights trip={trip} allTrips={allTrips} />
 
           <DonutChart
             slices={catTotals.map(([catId, value]) => {
