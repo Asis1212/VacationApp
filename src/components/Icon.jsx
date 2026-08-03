@@ -6,7 +6,7 @@ import {
   Building2, UtensilsCrossed, Ticket, ShoppingBag,
   Car, Phone, HeartPulse, Briefcase,
   FileText, Star, Luggage, Banknote,
-  BarChart3, List, Trash2,
+  BarChart3, List, Trash2, LogOut,
 } from 'lucide-react';
 
 const ICONS = {
@@ -23,6 +23,7 @@ const ICONS = {
   'ArrowLeft': ArrowLeft,
   'ArrowLeftRight': ArrowLeftRight,
   'Trash2': Trash2,
+  'LogOut': LogOut,
 
   // Semantic / status
   'Plane': Plane,

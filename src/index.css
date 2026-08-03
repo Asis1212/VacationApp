@@ -449,6 +449,10 @@ button:active {
 .trips-screen__header {
   padding: 52px 20px 20px;
   background: linear-gradient(180deg, rgba(108,92,231,0.06) 0%, transparent 100%);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
 }
 
 .trips-screen__title {
@@ -1705,7 +1709,155 @@ button:active {
 }
 
 /* ============================================================
-   23. Onboarding Screen
+   23. Auth Screen
+   ============================================================ */
+.auth-screen {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-screen__bg {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(108,92,231,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 80% 90%, rgba(255,138,107,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.auth-card {
+  background: var(--color-card);
+  border-radius: var(--radius-card);
+  box-shadow: 0 8px 40px rgba(108,92,231,0.13), 0 2px 8px rgba(0,0,0,0.06);
+  border: 1px solid var(--color-border);
+  padding: 32px 28px 28px;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  animation: fadeInUp 0.3s ease;
+}
+
+.auth-card__logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.auth-card__title {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--color-text);
+  text-align: center;
+  margin-bottom: 2px;
+}
+
+.auth-card__subtitle {
+  font-size: 0.88rem;
+  color: var(--color-muted);
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.auth-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.auth-form__error {
+  background: rgba(255,92,122,0.08);
+  border: 1px solid rgba(255,92,122,0.2);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 0.82rem;
+  color: #d9365a;
+  text-align: center;
+}
+
+.auth-form__submit {
+  margin-top: 4px;
+  width: 100%;
+}
+
+.auth-form__submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.auth-card__switch {
+  text-align: center;
+  font-size: 0.84rem;
+  color: var(--color-muted);
+  margin-top: 8px;
+}
+
+.auth-card__switch-btn {
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 0.84rem;
+  cursor: pointer;
+  margin-right: 4px;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Logout button in header */
+.btn-logout {
+  background: none;
+  border: 1.5px solid var(--color-border);
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-muted);
+  flex-shrink: 0;
+  transition: background 0.15s, color 0.15s;
+}
+
+.btn-logout:hover {
+  background: rgba(255,92,122,0.08);
+  color: var(--color-rose);
+  border-color: rgba(255,92,122,0.2);
+}
+
+/* Greeting under title */
+.trips-screen__greeting {
+  font-size: 0.88rem;
+  color: var(--color-primary);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+/* Logout in settings */
+.btn-logout-settings {
+  color: var(--color-rose);
+  border-color: rgba(255,92,122,0.2);
+  justify-content: flex-start;
+}
+
+/* ============================================================
+   24. Onboarding Screen
    ============================================================ */
 @keyframes onboardingIn {
   from { opacity: 0; transform: scale(1.03); }

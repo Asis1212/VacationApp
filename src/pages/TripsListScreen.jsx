@@ -4,7 +4,7 @@ import Icon from '../components/Icon.jsx';
 
 const SOON_STATUSES = new Set(['draft', 'upcoming', 'today', 'active']);
 
-export default function TripsListScreen({ trips, loading, createTrip, onSelectTrip }) {
+export default function TripsListScreen({ trips, loading, createTrip, onSelectTrip, user, onLogout }) {
   const handleNew = async () => {
     const id = await createTrip();
     onSelectTrip(id, 'settings');
@@ -19,10 +19,20 @@ export default function TripsListScreen({ trips, loading, createTrip, onSelectTr
     <div className="app-shell">
       <div className="trips-screen">
         <div className="trips-screen__header">
-          <h1 className="trips-screen__title">החופשות שלי</h1>
-          <p className="trips-screen__subtitle">
-            {loading ? 'טוען...' : count === 0 ? 'אין עדיין חופשות' : count === 1 ? 'חופשה אחת' : `${count} חופשות`}
-          </p>
+          <div>
+            <h1 className="trips-screen__title">החופשות שלי</h1>
+            {user && (
+              <p className="trips-screen__greeting">שלום, {user.firstName} 👋</p>
+            )}
+            <p className="trips-screen__subtitle">
+              {loading ? 'טוען...' : count === 0 ? 'אין עדיין חופשות' : count === 1 ? 'חופשה אחת' : `${count} חופשות`}
+            </p>
+          </div>
+          {onLogout && (
+            <button className="btn-logout" onClick={onLogout} title="התנתקות">
+              <Icon name="LogOut" size={18} />
+            </button>
+          )}
         </div>
 
         <div className="trips-screen__cta">

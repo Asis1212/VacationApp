@@ -9,7 +9,7 @@
     "lint": "oxlint",
     "preview": "vite preview",
     "db:generate": "drizzle-kit generate",
-    "db:migrate": "netlify database migrations apply",
+    "db:migrate": "npx netlify database migrations apply",
     "icons:generate": "node scripts/generate-icons.mjs"
   },
   "dependencies": {

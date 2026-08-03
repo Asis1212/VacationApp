@@ -1,7 +1,18 @@
-import { pgTable, text, numeric, boolean, integer, bigint } from 'drizzle-orm/pg-core';
+import { pgTable, text, numeric, boolean, integer, bigint, timestamp } from 'drizzle-orm/pg-core';
+
+export const users = pgTable('users', {
+  id:           text('id').primaryKey(),
+  firstName:    text('first_name').notNull(),
+  lastName:     text('last_name').notNull(),
+  email:        text('email').notNull().unique(),
+  passwordHash: text('password_hash'),
+  provider:     text('provider').notNull().default('email'), // 'email' | 'google'
+  createdAt:    timestamp('created_at').notNull().defaultNow(),
+});
 
 export const trips = pgTable('trips', {
   id:          text('id').primaryKey(),
+  userId:      text('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
   name:        text('name').notNull().default(''),
   destination: text('destination').notNull().default(''),
   startDate:   text('start_date').notNull().default(''),

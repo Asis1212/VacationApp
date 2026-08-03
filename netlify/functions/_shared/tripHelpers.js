@@ -25,6 +25,7 @@ export async function loadTrip(id) {
 
   return {
     id: trip.id,
+    userId: trip.userId,
     name: trip.name,
     destination: trip.destination,
     startDate: trip.startDate,
@@ -47,6 +48,7 @@ export async function loadTrip(id) {
 export async function saveTrip(trip) {
   await db.insert(trips).values({
     id: trip.id,
+    userId: trip.userId,
     name: trip.name ?? '',
     destination: trip.destination ?? '',
     startDate: trip.startDate ?? '',

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Icon from '../components/Icon.jsx';
 
-export default function SettingsTab({ trip, updateTrip, onDeleted }) {
+export default function SettingsTab({ trip, updateTrip, onDeleted, onLogout }) {
   const [form, setForm] = useState({
     name: trip.name || '',
     destination: trip.destination || '',
@@ -90,10 +90,18 @@ export default function SettingsTab({ trip, updateTrip, onDeleted }) {
       <div className="settings-danger-card">
         <div className="settings-danger-card__title">אזור מסוכן</div>
         {!showConfirm ? (
-          <button className="btn-danger" onClick={() => setShowConfirm(true)}>
-            <Icon name="Trash2" size={15} style={{ verticalAlign: 'middle', marginLeft: 6 }} />
-            מחיקת החופשה
-          </button>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            <button className="btn-danger" onClick={() => setShowConfirm(true)}>
+              <Icon name="Trash2" size={15} style={{ verticalAlign: 'middle', marginLeft: 6 }} />
+              מחיקת החופשה
+            </button>
+            {onLogout && (
+              <button className="btn-ghost btn-logout-settings" onClick={onLogout}>
+                <Icon name="LogOut" size={15} style={{ verticalAlign: 'middle', marginLeft: 6 }} />
+                התנתקות
+              </button>
+            )}
+          </div>
         ) : (
           <div className="confirm-box">
             <div className="confirm-box__text">
