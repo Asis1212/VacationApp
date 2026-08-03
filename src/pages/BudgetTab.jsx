@@ -23,6 +23,7 @@ export default function BudgetTab({ trip, addExpense, deleteExpense }) {
   const [cat, setCat] = useState('other');
   const [note, setNote] = useState('');
   const [date, setDate] = useState(todayISO());
+  const [showConverter, setShowConverter] = useState(false);
 
   const budget = Number(trip.budget) || 0;
   const spent = getTotalSpent(trip);
@@ -172,8 +173,28 @@ export default function BudgetTab({ trip, addExpense, deleteExpense }) {
         </div>
       )}
 
-      {/* Currency converter */}
-      {trip.currency && <CurrencyConverter baseCurrency={trip.currency} />}
+      {/* Currency converter button */}
+      {trip.currency && (
+        <button className="btn-converter" onClick={() => setShowConverter(true)}>
+          <Icon name="ArrowLeftRight" size={16} style={{ marginLeft: 8 }} />
+          המרת מטבע
+        </button>
+      )}
+
+      {/* Currency converter modal */}
+      {showConverter && (
+        <div className="modal-overlay" onClick={() => setShowConverter(false)}>
+          <div className="modal-sheet" onClick={e => e.stopPropagation()}>
+            <div className="modal-sheet__header">
+              <span className="modal-sheet__title">המרת מטבע</span>
+              <button className="modal-sheet__close" onClick={() => setShowConverter(false)}>
+                <Icon name="X" size={18} />
+              </button>
+            </div>
+            <CurrencyConverter baseCurrency={trip.currency} />
+          </div>
+        </div>
+      )}
 
       {expenses.length === 0 && (
         <div style={{ textAlign: 'center', padding: '24px', color: 'var(--color-muted)', fontSize: '0.9rem' }}>

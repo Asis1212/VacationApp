@@ -1362,7 +1362,112 @@ button:active {
 }
 
 /* ============================================================
-   22. Currency Converter
+   22. Currency Converter Button + Modal
+   ============================================================ */
+.btn-converter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 13px 20px;
+  background: var(--color-card);
+  border: 1.5px solid rgba(108,92,231,0.18);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  cursor: pointer;
+  transition: background 0.15s, box-shadow 0.15s;
+}
+
+.btn-converter:hover {
+  background: rgba(108,92,231,0.05);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(25, 26, 46, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 200;
+  padding: 0 0 env(safe-area-inset-bottom);
+  animation: overlayIn 0.2s ease;
+}
+
+@keyframes overlayIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.modal-sheet {
+  width: 100%;
+  max-width: var(--max-w);
+  background: var(--color-card);
+  border-radius: 28px 28px 0 0;
+  padding: 0 20px 32px;
+  max-height: 85dvh;
+  overflow-y: auto;
+  animation: sheetUp 0.25s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@keyframes sheetUp {
+  from { transform: translateY(60px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.modal-sheet__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0 16px;
+  position: sticky;
+  top: 0;
+  background: var(--color-card);
+  z-index: 1;
+}
+
+.modal-sheet__title {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--color-text);
+}
+
+.modal-sheet__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(108,92,231,0.08);
+  border: none;
+  cursor: pointer;
+  color: var(--color-text);
+  transition: background 0.15s;
+}
+
+.modal-sheet__close:hover {
+  background: rgba(108,92,231,0.15);
+}
+
+/* Strip card styling from converter when inside the modal */
+.modal-sheet .currency-converter {
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+/* ============================================================
+   22b. Currency Converter (standalone)
    ============================================================ */
 .currency-converter {
   background: var(--color-card);
