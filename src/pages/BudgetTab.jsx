@@ -1,19 +1,20 @@
 import { useState } from 'react';
-import { EXPENSE_CATEGORIES, getCategoryById } from '../../data/expenseCategories.js';
-import { formatAmount, formatDate } from '../../utils/formatters.js';
-import { getTotalSpent } from '../../utils/tripHelpers.js';
-import CategoryChip from '../shared/CategoryChip.jsx';
-import ProgressBar from '../shared/ProgressBar.jsx';
-import DonutChart from '../shared/DonutChart.jsx';
-import DailyBarChart from '../shared/DailyBarChart.jsx';
-import Icon from '../shared/Icon.jsx';
+import { EXPENSE_CATEGORIES, getCategoryById } from '../data/expenseCategories.js';
+import { formatAmount, formatDate } from '../utils/formatters.js';
+import { getTotalSpent } from '../utils/tripHelpers.js';
+import CategoryChip from '../components/CategoryChip.jsx';
+import ProgressBar from '../components/ProgressBar.jsx';
+import DonutChart from '../components/DonutChart.jsx';
+import DailyBarChart from '../components/DailyBarChart.jsx';
+import CurrencyConverter from '../components/CurrencyConverter.jsx';
+import Icon from '../components/Icon.jsx';
 
 function todayISO() {
   return new Date().toISOString().slice(0, 10);
 }
 
 function getCurrencySymbol(code) {
-  const map = { ILS: '₪', USD: '$', EUR: '€', GBP: '£', JPY: '¥' };
+  const map = { ILS: '₪', USD: '$', EUR: '€', GBP: '£', JPY: '¥', THB: '฿' };
   return map[code] || code;
 }
 
@@ -170,6 +171,9 @@ export default function BudgetTab({ trip, addExpense, deleteExpense }) {
           })}
         </div>
       )}
+
+      {/* Currency converter */}
+      {trip.currency && <CurrencyConverter baseCurrency={trip.currency} />}
 
       {expenses.length === 0 && (
         <div style={{ textAlign: 'center', padding: '24px', color: 'var(--color-muted)', fontSize: '0.9rem' }}>

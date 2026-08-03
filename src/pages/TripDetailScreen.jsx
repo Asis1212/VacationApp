@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useTrip } from '../hooks/useTrip.js';
-import HomeTab from './tabs/HomeTab.jsx';
-import BudgetTab from './tabs/BudgetTab.jsx';
-import ChecklistTab from './tabs/ChecklistTab.jsx';
-import SettingsTab from './tabs/SettingsTab.jsx';
-import Icon from './shared/Icon.jsx';
+import HomeTab from './HomeTab.jsx';
+import BudgetTab from './BudgetTab.jsx';
+import ChecklistTab from './ChecklistTab.jsx';
+import SettingsTab from './SettingsTab.jsx';
+import Icon from '../components/Icon.jsx';
 
 const TABS = [
   { id: 'home',      label: 'בית',       icon: 'Home' },

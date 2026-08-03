@@ -1,8 +1,8 @@
 import { getTripStatus, getTripLength, getTotalSpent } from '../utils/tripHelpers.js';
 import { formatAmount, formatDateRange } from '../utils/formatters.js';
 import StatusBadge from './StatusBadge.jsx';
-import ProgressBar from './shared/ProgressBar.jsx';
-import Icon from './shared/Icon.jsx';
+import ProgressBar from './ProgressBar.jsx';
+import Icon from './Icon.jsx';
 
 export default function TripCard({ trip, onClick }) {
   const status = getTripStatus(trip);

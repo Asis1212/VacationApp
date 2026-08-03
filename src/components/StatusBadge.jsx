@@ -1,5 +1,5 @@
 import { getDaysRemaining } from '../utils/tripHelpers.js';
-import Icon from './shared/Icon.jsx';
+import Icon from './Icon.jsx';
 
 const STATUS_CONFIG = {
   draft:    { label: 'טיוטה',        cls: 'badge--draft',    icon: null },

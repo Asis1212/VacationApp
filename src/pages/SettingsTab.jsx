@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Icon from '../shared/Icon.jsx';
+import Icon from '../components/Icon.jsx';
 
 export default function SettingsTab({ trip, updateTrip, onDeleted }) {
   const [form, setForm] = useState({
@@ -75,6 +75,7 @@ export default function SettingsTab({ trip, updateTrip, onDeleted }) {
               <option value="EUR">€ יורו</option>
               <option value="GBP">£ לירה</option>
               <option value="JPY">¥ ין</option>
+              <option value="THB">฿ בהט</option>
             </select>
           </div>
         </div>

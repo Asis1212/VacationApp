@@ -1362,7 +1362,136 @@ button:active {
 }
 
 /* ============================================================
-   22. Onboarding Screen
+   22. Currency Converter
+   ============================================================ */
+.currency-converter {
+  background: var(--color-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.currency-converter__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.currency-converter__title {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+}
+
+.currency-converter__date {
+  font-size: 0.72rem;
+  color: var(--color-muted);
+  font-weight: 500;
+}
+
+.currency-converter__input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.currency-converter__input {
+  flex: 1;
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--color-text);
+  background: rgba(108,92,231,0.05);
+  border: 1.5px solid rgba(108,92,231,0.15);
+  border-radius: 14px;
+  padding: 10px 14px;
+  text-align: left;
+  direction: ltr;
+}
+
+.currency-converter__input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(108,92,231,0.1);
+  background: #fff;
+}
+
+.currency-converter__base-label {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  min-width: 28px;
+}
+
+.currency-converter__rates {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(108,92,231,0.08);
+}
+
+.currency-converter__rate-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+  background: rgba(108,92,231,0.03);
+  border-bottom: 1px solid rgba(108,92,231,0.06);
+}
+
+.currency-converter__rate-row:last-child {
+  border-bottom: none;
+}
+
+.currency-converter__rate-code {
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  min-width: 32px;
+  letter-spacing: 0.04em;
+}
+
+.currency-converter__rate-label {
+  font-size: 0.82rem;
+  color: var(--color-muted);
+  flex: 1;
+}
+
+.currency-converter__rate-value {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  direction: ltr;
+}
+
+.currency-converter__loading {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  text-align: center;
+  padding: 8px 0;
+}
+
+.currency-converter__error {
+  font-size: 0.82rem;
+  color: var(--color-rose);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ============================================================
+   23. Onboarding Screen
    ============================================================ */
 @keyframes onboardingIn {
   from { opacity: 0; transform: scale(1.03); }

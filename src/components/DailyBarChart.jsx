@@ -1,4 +1,4 @@
-import { formatAmount } from '../../utils/formatters.js';
+import { formatAmount } from '../utils/formatters.js';
 
 export default function DailyBarChart({ expenses, startDate, endDate, currency }) {
   if (!startDate || !endDate || expenses.length === 0) return null;

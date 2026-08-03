@@ -1,9 +1,9 @@
-import { useCountdown } from '../../hooks/useCountdown.js';
-import { getTripLength, getTotalSpent } from '../../utils/tripHelpers.js';
-import { formatAmount, formatDateRange } from '../../utils/formatters.js';
-import FlightPathHero from '../shared/FlightPathHero.jsx';
-import ProgressBar from '../shared/ProgressBar.jsx';
-import Icon from '../shared/Icon.jsx';
+import { useCountdown } from '../hooks/useCountdown.js';
+import { getTripLength, getTotalSpent } from '../utils/tripHelpers.js';
+import { formatAmount, formatDateRange } from '../utils/formatters.js';
+import FlightPathHero from '../components/FlightPathHero.jsx';
+import ProgressBar from '../components/ProgressBar.jsx';
+import Icon from '../components/Icon.jsx';
 
 function pad(n) {
   return String(n).padStart(2, '0');

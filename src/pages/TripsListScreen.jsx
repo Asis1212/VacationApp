@@ -1,6 +1,6 @@
 import { getTripStatus, sortTrips } from '../utils/tripHelpers.js';
-import TripCard from './TripCard.jsx';
-import Icon from './shared/Icon.jsx';
+import TripCard from '../components/TripCard.jsx';
+import Icon from '../components/Icon.jsx';
 
 const SOON_STATUSES = new Set(['draft', 'upcoming', 'today', 'active']);
 

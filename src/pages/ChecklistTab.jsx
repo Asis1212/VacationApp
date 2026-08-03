@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import ProgressBar from '../shared/ProgressBar.jsx';
-import Icon from '../shared/Icon.jsx';
+import ProgressBar from '../components/ProgressBar.jsx';
+import Icon from '../components/Icon.jsx';
 
 // Fallback for rows saved during icon-migration period where emoji was undefined
 const TITLE_EMOJI = {

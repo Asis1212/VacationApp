@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useTrips } from './hooks/useTrips.js';
-import TripsListScreen from './components/TripsListScreen.jsx';
-import TripDetailScreen from './components/TripDetailScreen.jsx';
-import OnboardingScreen from './components/OnboardingScreen.jsx';
+import TripsListScreen from './pages/TripsListScreen.jsx';
+import TripDetailScreen from './pages/TripDetailScreen.jsx';
+import OnboardingScreen from './pages/OnboardingScreen.jsx';
 
 export default function App() {
   const [showOnboarding, setShowOnboarding] = useState(

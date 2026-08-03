@@ -1,7 +1,7 @@
 // Thin wrapper — pass any Lucide icon name as `name`, e.g. <Icon name="Plane" />
 import {
   Home, CreditCard, ListChecks, Settings2,
-  Plus, X, Check, ArrowLeft,
+  Plus, X, Check, ArrowLeft, ArrowLeftRight,
   Plane, Sun, Sparkles, TriangleAlert, MapPin,
   Building2, UtensilsCrossed, Ticket, ShoppingBag,
   Car, Phone, HeartPulse, Briefcase,
@@ -21,6 +21,7 @@ const ICONS = {
   'X': X,
   'Check': Check,
   'ArrowLeft': ArrowLeft,
+  'ArrowLeftRight': ArrowLeftRight,
   'Trash2': Trash2,
 
   // Semantic / status

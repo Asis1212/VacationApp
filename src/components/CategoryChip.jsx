@@ -1,5 +1,3 @@
-import Icon from './Icon.jsx';
-
 export default function CategoryChip({ cat, selected, onClick }) {
   return (
     <button

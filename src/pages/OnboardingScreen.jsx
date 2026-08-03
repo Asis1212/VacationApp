@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Icon from './shared/Icon.jsx';
+import Icon from '../components/Icon.jsx';
 
 const SLIDES = [
   {
